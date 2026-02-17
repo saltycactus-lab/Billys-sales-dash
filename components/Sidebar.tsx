@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, Map } from 'lucide-react';
+import { Compass, Map, Shield } from 'lucide-react';
 
 const NAV = [
-  { href: '/',         label: "Today's Quest", sub: 'Weekly view',   icon: Compass },
-  { href: '/pipeline', label: "The Journey",   sub: 'Full pipeline', icon: Map     },
+  { href: '/',         label: "Today's Quest", sub: 'Weekly view',    icon: Compass },
+  { href: '/pipeline', label: "The Journey",   sub: 'Full pipeline',  icon: Map     },
+  { href: '/values',   label: "Core 6",        sub: 'Company values', icon: Shield  },
 ];
 
 export default function Sidebar() {
