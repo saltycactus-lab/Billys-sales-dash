@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
+/* ─── Hero's Journey · Liquid Glass Design System ─────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --gold:        #c9a84c;
+  --gold-bright: #e8c96e;
+  --gold-dim:    rgba(201,168,76,0.15);
+
+  --glass-bg:        rgba(255, 255, 255, 0.04);
+  --glass-bg-mid:    rgba(255, 255, 255, 0.07);
+  --glass-bg-strong: rgba(255, 255, 255, 0.10);
+  --glass-border:    rgba(255, 255, 255, 0.10);
+  --glass-border-hi: rgba(255, 255, 255, 0.18);
+  --glass-shine:     rgba(255, 255, 255, 0.06);
+
+  --text-primary:   #f0f5f1;
+  --text-secondary: #7a9e87;
+  --text-muted:     #3d5c49;
+
+  --green-deep:  #0b1a10;
+  --green-dark:  #0f2016;
+  --green-mid:   #1a3526;
+  --green-light: #2d6a4f;
+
+  --red:    #e05252;
+  --amber:  #d4963a;
+  --purple: #9b7fe8;
+  --teal:   #38bdb0;
+  --blue:   #5b8dee;
+  --rose:   #e07a9b;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+* { box-sizing: border-box; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ─── Background ─────────────────────────────────────────────────────────── */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(ellipse 120% 80% at 20% 0%,  #0d2518 0%, transparent 60%),
+              radial-gradient(ellipse 80%  60% at 80% 100%, #0a1c10 0%, transparent 60%),
+              #060d08;
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
+
+/* ─── Liquid Glass Card ───────────────────────────────────────────────────── */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.4),
+    0 1px 0   rgba(255,255,255,0.08) inset,
+    0 -1px 0  rgba(0,0,0,0.3) inset;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.glass:hover {
+  border-color: var(--glass-border-hi);
+  background: var(--glass-bg-mid);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.5),
+    0 1px 0   rgba(255,255,255,0.12) inset,
+    0 -1px 0  rgba(0,0,0,0.3) inset;
+}
+
+/* Stronger glass for stat cards */
+.glass-strong {
+  background: var(--glass-bg-mid);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.5),
+    0 1px 0 rgba(255,255,255,0.10) inset,
+    0 0 60px rgba(0,0,0,0.2) inset;
+}
+
+/* ─── Stage Badges ────────────────────────────────────────────────────────── */
+
+.stage-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+}
+
+.stage-lead                { background: rgba(91,141,238,0.2);  color: #8bb4f5; border: 1px solid rgba(91,141,238,0.3);  }
+.stage-discovery-scheduled { background: rgba(212,150,58,0.2);  color: #e0b060; border: 1px solid rgba(212,150,58,0.3);  }
+.stage-discovery-complete  { background: rgba(82,196,126,0.2);  color: #6ddfa0; border: 1px solid rgba(82,196,126,0.3);  }
+.stage-design-in-progress  { background: rgba(155,127,232,0.2); color: #b8a0f0; border: 1px solid rgba(155,127,232,0.3); }
+.stage-designs-complete    { background: rgba(155,127,232,0.3); color: #c8b5f8; border: 1px solid rgba(155,127,232,0.4); }
+.stage-quote-sent          { background: rgba(224,122,155,0.2); color: #f0a0be; border: 1px solid rgba(224,122,155,0.3); }
+.stage-won                 { background: rgba(82,196,126,0.25); color: #52c47e; border: 1px solid rgba(82,196,126,0.4);  }
+.stage-invoiced            { background: rgba(56,189,176,0.2);  color: #56d4c2; border: 1px solid rgba(56,189,176,0.3);  }
+.stage-achieved            { background: rgba(201,168,76,0.2);  color: #c9a84c; border: 1px solid rgba(201,168,76,0.35); }
+.stage-lost                { background: rgba(224,82,82,0.15);  color: #c06060; border: 1px solid rgba(224,82,82,0.25);  }
+
+/* ─── Gold Glow Button ────────────────────────────────────────────────────── */
+
+.btn-gold {
+  background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.08));
+  border: 1px solid rgba(201,168,76,0.35);
+  color: #c9a84c;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s;
+}
+.btn-gold:hover {
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(201,168,76,0.15));
+  border-color: rgba(201,168,76,0.6);
+  box-shadow: 0 0 20px rgba(201,168,76,0.2);
+}
+
+/* ─── 3D Lift on hover ───────────────────────────────────────────────────── */
+
+.lift {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+}
+.lift:hover {
+  transform: translateY(-2px) scale(1.005);
+}
+
+/* ─── Section label ─────────────────────────────────────────────────────── */
+
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ─── Divider ────────────────────────────────────────────────────────────── */
+
+.glass-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.08), transparent);
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
+
+/* ─── Glow orbs (decorative background elements) ─────────────────────────── */
+
+.orb {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Pulse dot ─────────────────────────────────────────────────────────── */
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
